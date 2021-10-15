@@ -67,38 +67,38 @@ using swoole::network::Socket;
 using PGObject = swoole::postgresql::Object;
 using PGQueryType = swoole::postgresql::QueryType;
 
-PHP_MINIT_FUNCTION(swoole_postgresql);
-PHP_MINFO_FUNCTION(swoole_postgresql);
+PHP_MINIT_FUNCTION(openswoole_postgresql);
+PHP_MINFO_FUNCTION(openswoole_postgresql);
 
 void swoole_postgresql_init(int module_number);
 
 // clang-format off
-/* {{{ swoole_postgresql_deps
+/* {{{ openswoole_postgresql_deps
  */
-static const zend_module_dep swoole_postgresql_deps[] = {
-    ZEND_MOD_REQUIRED("swoole")
+static const zend_module_dep openswoole_postgresql_deps[] = {
+    ZEND_MOD_REQUIRED("openswoole")
     ZEND_MOD_END
 };
 /* }}} */
 
-zend_module_entry swoole_postgresql_module_entry = {
+zend_module_entry openswoole_postgresql_module_entry = {
     STANDARD_MODULE_HEADER_EX, NULL,
-    swoole_postgresql_deps,
-    "swoole_postgresql",
+    openswoole_postgresql_deps,
+    "openswoole_postgresql",
     NULL,
-    PHP_MINIT(swoole_postgresql),
+    PHP_MINIT(openswoole_postgresql),
     NULL,
     NULL,
     NULL,
-    PHP_MINFO(swoole_postgresql),
-    PHP_SWOOLE_EXT_PLUS_VERSION,
+    PHP_MINFO(openswoole_postgresql),
+    PHP_OPENSWOOLE_EXT_PLUS_VERSION,
     STANDARD_MODULE_PROPERTIES
 };
 
 // clang-format on
 
-#ifdef COMPILE_DL_SWOOLE_POSTGRESQL
-ZEND_GET_MODULE(swoole_postgresql)
+#ifdef COMPILE_DL_OPENSWOOLE_POSTGRESQL
+ZEND_GET_MODULE(openswoole_postgresql)
 #endif
 
 static zend_class_entry *swoole_postgresql_coro_ce;
@@ -250,7 +250,7 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_pg_fetch_object, 0, 0, 1)
     ZEND_ARG_INFO(0, ctor_params)
 ZEND_END_ARG_INFO()
 
-static const zend_function_entry swoole_postgresql_coro_methods[] =
+static const zend_function_entry openswoole_postgresql_coro_methods[] =
 {
     PHP_ME(swoole_postgresql_coro, __construct, arginfo_swoole_void, ZEND_ACC_PUBLIC)
     PHP_ME(swoole_postgresql_coro, connect, arginfo_pg_connect, ZEND_ACC_PUBLIC)
@@ -279,7 +279,7 @@ void swoole_postgresql_init(int module_number) {
                         "Swoole\\Coroutine\\PostgreSQL",
                         NULL,
                         "Co\\PostgreSQL",
-                        swoole_postgresql_coro_methods);
+                        openswoole_postgresql_coro_methods);
 #ifdef SW_SET_CLASS_NOT_SERIALIZABLE
     SW_SET_CLASS_NOT_SERIALIZABLE(swoole_postgresql_coro);
 #else
@@ -1567,12 +1567,12 @@ static PHP_METHOD(swoole_postgresql_coro, escapeIdentifier) {
 
 /* {{{ PHP_MINIT_FUNCTION
  */
-PHP_MINIT_FUNCTION(swoole_postgresql) {
+PHP_MINIT_FUNCTION(openswoole_postgresql) {
 #if 0
-    if (PHP_SWOOLE_EXT_POSTGRESQL_VERSION_ID != swoole_version_id()) {
+    if (PHP_OPENSWOOLE_EXT_POSTGRESQL_VERSION_ID != swoole_version_id()) {
         php_swoole_fatal_error(E_CORE_ERROR,
-                               "Ext version (%d) does not match the Swoole version (%d)",
-                               PHP_SWOOLE_EXT_POSTGRESQL_VERSION_ID,
+                               "Ext version (%d) does not match the Open Swoole version (%d)",
+                               PHP_OPENSWOOLE_EXT_POSTGRESQL_VERSION_ID,
                                swoole_version_id());
         return FAILURE;
     }
@@ -1585,11 +1585,11 @@ PHP_MINIT_FUNCTION(swoole_postgresql) {
 
 /* {{{ PHP_MINFO_FUNCTION
  */
-PHP_MINFO_FUNCTION(swoole_postgresql) {
+PHP_MINFO_FUNCTION(openswoole_postgresql) {
     char buf[64];
     php_info_print_table_start();
-    php_info_print_table_header(2, "Swoole PostgreSQL", "enabled");
-    php_info_print_table_row(2, "Author", "Swoole Team <team@swoole.com>");
+    php_info_print_table_header(2, "PostgreSQL for Open Swoole", "enabled");
+    php_info_print_table_row(2, "Author", "Open Swoole Group <hello@swoole.co.uk>");
     php_info_print_table_row(2, "Version", SWOOLE_VERSION);
     snprintf(buf, sizeof(buf), "%s %s", __DATE__, __TIME__);
     php_info_print_table_row(2, "Built", buf);
