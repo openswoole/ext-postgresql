@@ -1,5 +1,5 @@
 dnl $Id$
-dnl config.m4 for extension swoole_postgresql
+dnl config.m4 for extension openswoole_postgresql
 
 dnl  +----------------------------------------------------------------------+
 dnl  | Swoole                                                               |
@@ -15,7 +15,7 @@ dnl  +----------------------------------------------------------------------+
 dnl  | Author: Tianfeng Han  <mikan.tenny@gmail.com>                        |
 dnl  +----------------------------------------------------------------------+
 
-PHP_ARG_ENABLE(swoole_postgresql, swoole_postgresql support,
+PHP_ARG_ENABLE(openswoole_postgresql, openswoole_postgresql support,
 [  --enable-swoole_postgresql           Enable swoole_postgresql support], [enable_swoole_postgresql="yes"])
 
 PHP_ARG_ENABLE(asan, whether to enable asan,
@@ -42,10 +42,10 @@ if test "$CLANG" = "yes"; then
     CFLAGS="$CFLAGS -std=gnu89"
 fi
 
-if test "$PHP_SWOOLE_POSTGRESQL" != "no"; then
+if test "$PHP_OPENSWOOLE_POSTGRESQL" != "no"; then
 
     PHP_ADD_LIBRARY(pthread)
-    PHP_SUBST(SWOOLE_POSTGRESQL_SHARED_LIBADD)
+    PHP_SUBST(OPENSWOOLE_POSTGRESQL_SHARED_LIBADD)
 
     AC_CHECK_LIB(pq, PQconnectdb, AC_DEFINE(HAVE_POSTGRESQL, 1, [have postgresql]))
 
@@ -67,7 +67,7 @@ if test "$PHP_SWOOLE_POSTGRESQL" != "no"; then
             PGSQL_INCLUDE=$PHP_LIBPQ_DIR/include
         fi
         AC_DEFINE(SW_USE_POSTGRESQL, 1, [enable coroutine-postgresql support])
-        PHP_ADD_LIBRARY(pq, 1, SWOOLE_POSTGRESQL_SHARED_LIBADD)
+        PHP_ADD_LIBRARY(pq, 1, OPENSWOOLE_POSTGRESQL_SHARED_LIBADD)
     fi
 
     if test "$PHP_OPENSSL" != "no" || test "$PHP_OPENSSL_DIR" != "no"; then
@@ -80,18 +80,18 @@ if test "$PHP_SWOOLE_POSTGRESQL" != "no"; then
     CFLAGS="-Wall -pthread $CFLAGS"
     LDFLAGS="$LDFLAGS -lpthread"
 
-    PHP_ADD_LIBRARY(pthread, 1, SWOOLE_POSTGRESQL_SHARED_LIBADD)
+    PHP_ADD_LIBRARY(pthread, 1, OPENSWOOLE_POSTGRESQL_SHARED_LIBADD)
 
-    swoole_source_file="swoole_postgresql.cc"
+    swoole_source_file="openswoole_postgresql.cc"
 
-    PHP_NEW_EXTENSION(swoole_postgresql, $swoole_source_file, $ext_shared,,, cxx)
+    PHP_NEW_EXTENSION(openswoole_postgresql, $swoole_source_file, $ext_shared,,, cxx)
 
     PHP_ADD_INCLUDE([$ext_srcdir])
     PHP_ADD_INCLUDE([$ext_srcdir/include])
-    PHP_ADD_INCLUDE([$phpincludedir/ext/swoole])
-    PHP_ADD_INCLUDE([$phpincludedir/ext/swoole/include])
+    PHP_ADD_INCLUDE([$phpincludedir/ext/openswoole])
+    PHP_ADD_INCLUDE([$phpincludedir/ext/openswoole/include])
     
-    PHP_ADD_EXTENSION_DEP(swoole_postgresql, swoole)
+    PHP_ADD_EXTENSION_DEP(openswoole_postgresql, openswoole)
 
     PHP_REQUIRE_CXX()
     

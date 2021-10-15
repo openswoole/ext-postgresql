@@ -1,4 +1,4 @@
-name: ext-swoole_postgresql
+name: ext-openswoole_postgresql
 
 on: [push, pull_request]
 
@@ -23,8 +23,8 @@ jobs:
         ./configure
         make -j$(sysctl -n hw.ncpu)
         make install
-        docker-php-ext-enable swoole_postgresql
-        php --ri swoole_postgresql
+        docker-php-ext-enable openswoole_postgresql
+        php --ri openswoole_postgresql
     - name: composer
       run: composer update
     - name: tests
