@@ -26,6 +26,12 @@ Enable `openswoole_postgresql` in php.ini by adding the following line:
 extension=openswoole_postgresql.so
 ```
 
+### Use Docker to enable
+
+```
+docker-php-ext-enable --ini-name zzz-docker-php-ext-openswoole.ini openswoole
+```
+
 ### How to use the Postgres Client
 
 ```php
