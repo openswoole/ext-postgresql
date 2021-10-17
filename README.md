@@ -15,6 +15,7 @@ On MacOS, you have to install postgresql to build this extension: `brew install 
 
 ```bash
 git clone git@github.com:openswoole/ext-postgresql.git
+cd ./ext-postgresql
 git checkout v4.7.1
 phpize
 ./configure
