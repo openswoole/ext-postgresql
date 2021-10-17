@@ -15,6 +15,7 @@ On MacOS, you have to install postgresql to build this extension: `brew install 
 
 ```bash
 git clone git@github.com:openswoole/ext-postgresql.git
+cd ./ext-postgresql
 git checkout v4.7.1
 phpize
 ./configure
@@ -24,6 +25,12 @@ make && make install
 Enable `openswoole_postgresql` in php.ini by adding the following line:
 ```
 extension=openswoole_postgresql.so
+```
+
+### Check if the extension is installed
+
+```
+php --ri openswoole_postgresql
 ```
 
 ### Use Docker to enable
