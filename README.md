@@ -2,7 +2,7 @@
 
 > This library works with Open Swoole since release version v4.7.1.
 
-`ext-postgresql` is the Open Swoole Postgres Client library can be used with in the coroutine context without blocking.
+`ext-postgresql` is the Open Swoole Postgres Client library can be used with in the coroutine context without blocking IO.
 
 ### Pre-requirement
 
@@ -23,14 +23,21 @@ make && make install
 ```
 
 Enable `openswoole_postgresql` in php.ini by adding the following line:
+
 ```
 extension=openswoole_postgresql.so
+```
+
+### Check if the extension is installed
+
+```
+php --ri openswoole_postgresql
 ```
 
 ### Use Docker to enable
 
 ```
-docker-php-ext-enable --ini-name zzz-docker-php-ext-openswoole_postgresql.ini openswoole_postgresql
+docker-php-ext-enable --ini-name zzz-docker-php-ext-openswoole.ini openswoole
 ```
 
 ### How to use the Postgres Client
@@ -53,8 +60,3 @@ Co\run(function () {
 ```
 
 You can find more examples in the `/examples` folder.
- 
- 
-
-  
-
