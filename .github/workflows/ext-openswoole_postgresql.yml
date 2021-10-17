@@ -23,7 +23,7 @@ jobs:
         ./configure
         make -j$(sysctl -n hw.ncpu)
         make install
-        docker-php-ext-enable --ini-name zzz-docker-php-ext-openswoole.ini openswoole
+        docker-php-ext-enable --ini-name zzz-docker-php-ext-openswoole_postgresql.ini openswoole_postgresql
         php --ri openswoole_postgresql
     - name: composer
       run: composer update
