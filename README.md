@@ -1,11 +1,13 @@
 # Open Swoole Coroutine Postgres Client
 
-`ext-postgresql` is the Swoole Postgres Client library can be used with in the coroutine context without blocking.
+> This library works with Open Swoole since release version v4.7.1.
+
+`ext-postgresql` is the Open Swoole Postgres Client library can be used with in the coroutine context without blocking.
 
 ### Pre-requirement
 
 * `libpq` is required
-* `openswoole` version >= 4.4.0
+* `openswoole` version >= 4.7.1
 
 On MacOS, you have to install postgresql to build this extension: `brew install postgresql`.
 
@@ -13,6 +15,7 @@ On MacOS, you have to install postgresql to build this extension: `brew install 
 
 ```bash
 git clone git@github.com:openswoole/ext-postgresql.git
+git checkout v4.7.1
 phpize
 ./configure
 make && make install
@@ -21,6 +24,12 @@ make && make install
 Enable `openswoole_postgresql` in php.ini by adding the following line:
 ```
 extension=openswoole_postgresql.so
+```
+
+### Use Docker to enable
+
+```
+docker-php-ext-enable --ini-name zzz-docker-php-ext-openswoole.ini openswoole
 ```
 
 ### How to use the Postgres Client
