@@ -29,7 +29,7 @@ extension=openswoole_postgresql.so
 ### Use Docker to enable
 
 ```
-docker-php-ext-enable --ini-name zzz-docker-php-ext-openswoole.ini openswoole
+docker-php-ext-enable --ini-name zzz-docker-php-ext-openswoole_postgresql.ini openswoole_postgresql
 ```
 
 ### How to use the Postgres Client
